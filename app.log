@@ -31,3 +31,10 @@ INFO:root:User amr@email.com logged in successfully
 INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:09:22] "[32mPOST /login HTTP/1.1[0m" 302 -
 INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:09:22] "GET / HTTP/1.1" 200 -
 INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
