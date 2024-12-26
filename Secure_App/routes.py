@@ -50,7 +50,7 @@ class TransferForm(FlaskForm):
     submit = SubmitField('Transfer')
 
 class RegisterForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired(message="This field is required"), Email(message="Invalid Email address.")])
     password = StringField('Password', validators=[
         DataRequired(),
         Length(min=8, message="Password must be at least 8 characters long."),
@@ -59,7 +59,7 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired(), Email(message="Invalid Email address.")])
     password = StringField('Password', validators=[DataRequired(), Length(min=8)])
     submit = SubmitField('Login')
 
