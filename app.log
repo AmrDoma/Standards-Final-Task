@@ -128,3 +128,235 @@ INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:20:53] "[33mGET /tranfer HTTP/1.1[
 INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:20:56] "GET /transfer HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:21:01] "POST /transfer HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:21:09] "GET /transactions HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:21:54] "POST /transfer HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:21:55] "GET /transactions HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:21:56] "GET /transactions HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:22:02] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:22:53] "GET /transactions HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:23:51] "GET /login HTTP/1.1" 200 -
+INFO:root:User amr@email.com logged in successfully
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:23:58] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:23:58] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:24:54] "GET /comment HTTP/1.1" 200 -
+INFO:flask_wtf.csrf:The CSRF token is missing.
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:24:57] "[31m[1mPOST /comment HTTP/1.1[0m" 400 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:26:58] "GET /comment HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:27:09] "[35m[1mGET /comment HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:27:09] "GET /comment?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:27:09] "GET /comment?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:27:09] "GET /comment?__debugger__=yes&cmd=resource&f=console.png&s=u4E3YrGejNgKGa9C6DwI HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:27:09] "GET /comment?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:20] "[35m[1mGET /comment HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:20] "[36mGET /comment?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:20] "[36mGET /comment?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:20] "[36mGET /comment?__debugger__=yes&cmd=resource&f=console.png&s=u4E3YrGejNgKGa9C6DwI HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:20] "[36mGET /comment?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:22] "[35m[1mGET /comment HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:22] "[36mGET /comment?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:22] "[36mGET /comment?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:22] "[36mGET /comment?__debugger__=yes&cmd=resource&f=console.png&s=u4E3YrGejNgKGa9C6DwI HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:22] "[36mGET /comment?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:58] "[35m[1mGET /comment HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:59] "[35m[1mGET /comment HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:59] "[36mGET /comment?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:59] "[36mGET /comment?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:59] "GET /comment?__debugger__=yes&cmd=resource&f=console.png&s=aM1NtpFpO2gszEIqSECs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:28:59] "[36mGET /comment?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:29:05] "[35m[1mGET /comment HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:29:05] "[36mGET /comment?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:29:05] "[36mGET /comment?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:29:05] "[36mGET /comment?__debugger__=yes&cmd=resource&f=console.png&s=aM1NtpFpO2gszEIqSECs HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:29:05] "[36mGET /comment?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:29:07] "GET /comment HTTP/1.1" 200 -
+INFO:flask_wtf.csrf:The CSRF token is missing.
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:29:09] "[31m[1mPOST /comment HTTP/1.1[0m" 400 -
+INFO:flask_wtf.csrf:The CSRF token is missing.
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:29:12] "[31m[1mPOST /comment HTTP/1.1[0m" 400 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:flask_wtf.csrf:The CSRF token is missing.
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:29:58] "[31m[1mPOST /comment HTTP/1.1[0m" 400 -
+INFO:flask_wtf.csrf:The CSRF token is missing.
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:00] "[31m[1mPOST /comment HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:03] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:05] "GET /comment HTTP/1.1" 200 -
+INFO:flask_wtf.csrf:The CSRF token is missing.
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:08] "[31m[1mPOST /comment HTTP/1.1[0m" 400 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:flask_wtf.csrf:The CSRF token is missing.
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:31] "[31m[1mPOST /comment HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:34] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:37] "[35m[1mGET /comment HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:37] "[36mGET /comment?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:37] "[36mGET /comment?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:37] "GET /comment?__debugger__=yes&cmd=resource&f=console.png&s=BDtEl1SSqKPdevlKhbP0 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:37] "[36mGET /comment?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:49] "GET /comment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:49] "GET /comment HTTP/1.1" 200 -
+INFO:flask_wtf.csrf:The CSRF token is missing.
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:30:52] "[31m[1mPOST /comment HTTP/1.1[0m" 400 -
+INFO:flask_wtf.csrf:The CSRF token is missing.
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:31:05] "[31m[1mPOST /comment HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:31:07] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:31:10] "GET /comment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:31:12] "POST /comment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:31:48] "POST /comment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:31:59] "POST /comment HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:32:43] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:32:43] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:32:43] "GET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:32:43] "GET /login?__debugger__=yes&cmd=resource&f=console.png&s=dnUEfZ8Mq2v6gVMuRZqM HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:32:43] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:35:07] "GET /comment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:35:09] "POST /comment HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:35:58] "POST /comment HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:36:11] "GET /login HTTP/1.1" 200 -
+ERROR:root:No user found with username: mahmoudamr@outlook.com
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:36:13] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
+ERROR:root:No user found with username: 123@123.123
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:36:18] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:36:31] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled

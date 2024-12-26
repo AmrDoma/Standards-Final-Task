@@ -3,7 +3,7 @@ from markupsafe import escape
 import sqlite3
 from flask import Flask, render_template, request, redirect, session
 from flask_wtf.csrf import CSRFProtect
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField,TextAreaField,PasswordField
 from flask_wtf import FlaskForm
 from flask_bcrypt import Bcrypt
 import logging
@@ -35,14 +35,18 @@ class TransferForm(FlaskForm):
     submit = SubmitField('Transfer')
 
 class RegisterForm(FlaskForm):
-    email = StringField('Email')
-    password = StringField('Password')
+    email = StringField('Email',)
+    password = PasswordField('Password')
     submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
     email = StringField('Email')
-    password = StringField('Password')
+    password = PasswordField('Password')
     submit = SubmitField('Login')
+
+class CommentForm(FlaskForm):
+    comment = TextAreaField('Comment')
+    submit = SubmitField('Submit')
 
 logging.info('Forms created')
 
@@ -79,22 +83,17 @@ def home():
 @app.route('/comment', methods=['GET', 'POST'])
 def comment():
     comments = []
-    if request.method == 'POST':
-        user_comment = request.form['comment']
-
-        # Escape user input to prevent XSS before saving
+    form=CommentForm()
+    success=False
+    if form.validate_on_submit():
+        user_comment = form.comment.data
         sanitized_comment = escape(user_comment)
-
-        # Save the sanitized comment to the file
-        with open('Secure_App/comments.txt', 'a') as f:  # Adjusted path to use forward slashes
+        with open('Secure_App/comments.txt', 'a') as f:
             f.write(sanitized_comment + "\n")
-    
-    # Read all comments
+        success=True
     with open('Secure_App/comments.txt', 'r') as f:
-        comments = [line.strip() for line in f]  # Strip newline characters
-    
-    # Render the template with escaped comments
-    return render_template('comments.html', comments=comments)
+        comments = [line.strip() for line in f]
+    return render_template('comments.html', comments=comments, form=form, success=success)
 
 @app.route('/transactions')
 def view_transactions():
@@ -142,7 +141,7 @@ def login():
     form = LoginForm()
     success=False
     if form.validate_on_submit():
-        username = form.email.data
+        username = form.email.data.lower()
         password = form.password.data
         user = get_user_from_db(username,password)
         if user:
@@ -159,7 +158,7 @@ def register():
     form = RegisterForm()
     success=False
     if form.validate_on_submit():
-        username = form.email.data
+        username = form.email.data.lower()
         password = form.password.data
         hashed_password = bcrypt.generate_password_hash(password)
         conn = sqlite3.connect('users.db')
