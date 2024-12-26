@@ -10,6 +10,29 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import logging
 from cryptography.fernet import Fernet
+import re
+
+def detect_sql_injection(input_string):
+    sql_patterns = [
+        r"(\%27)|(\')|(\-\-)|(\%23)|(#)",  # SQL meta-characters
+        r"\b(SELECT|UPDATE|DELETE|INSERT|DROP|ALTER|CREATE|REPLACE|TRUNCATE|EXEC)\b",  # SQL keywords
+    ]
+    for pattern in sql_patterns:
+        if re.search(pattern, input_string, re.IGNORECASE):
+            return True
+    return False
+
+# Function to detect XSS patterns
+def detect_xss(input_string):
+    xss_patterns = [
+        r"(<|%3C)([^s]*s)+cript.*(>|%3E)",  # <script> tag
+        r"(<|%3C).*iframe.*(>|%3E)",  # <iframe> tag
+        r"(<|%3C).*img.*src.*(>|%3E)",  # <img> tag with src attribute
+    ]
+    for pattern in xss_patterns:
+        if re.search(pattern, input_string, re.IGNORECASE):
+            return True
+    return False
 
 
 def load_key():
@@ -51,7 +74,7 @@ class TransferForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(message="This field is required"), Email(message="Invalid Email address.")])
-    password = StringField('Password', validators=[
+    password = PasswordField('Password', validators=[
         DataRequired(),
         Length(min=8, message="Password must be at least 8 characters long."),
         Regexp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$', message="Password must contain letters and numbers.")
@@ -60,7 +83,7 @@ class RegisterForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email(message="Invalid Email address.")])
-    password = StringField('Password', validators=[DataRequired(), Length(min=8)])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     submit = SubmitField('Login')
 
 class CommentForm(FlaskForm):
@@ -68,6 +91,7 @@ class CommentForm(FlaskForm):
     submit = SubmitField('Submit')
 
 logging.info('Forms created')
+failed_login_attempts = {}
 
 # Insecure database connection (no parameterization)
 
@@ -85,30 +109,34 @@ def get_user_from_db(username, password):
     
     # Close the connection
     conn.close()
-    print(user)
     if not user:
         logging.error("No user found with username: %s", username)
         return None
     if (bcrypt.check_password_hash(user[2], password)):
         logging.info("User %s logged in successfully", username)
         return user
+    else:
+        return None
 
 
 
 @app.route('/')
 @limiter.limit("1/second", override_defaults=False)
 def home():
+    logging.info('Home page accessed')
     return render_template('home.html')
 
 @app.route('/comment', methods=['GET', 'POST'])
 @limiter.limit("1/second", override_defaults=False)
 def comment():
+    logging.info('Comment page accessed')
     comments = []
     form=CommentForm()
     success=False
     if form.validate_on_submit():
         user_comment = form.comment.data
         sanitized_comment = escape(user_comment)
+        logging.info('Comment: %s', sanitized_comment)
         with open('Secure_App/comments.txt', 'a') as f:
             f.write(sanitized_comment + "\n")
         success=True
@@ -133,6 +161,7 @@ def view_transactions():
                         'recipient': decrypted_recipient,
                         'amount': decrypted_amount
                     })
+                    logging.info('Transaction: %s', transactions)
                 except Exception as e:
                     # Handle decryption errors or malformed lines
                     print(f"Error decrypting line: {line}, error: {e}")
@@ -151,6 +180,7 @@ def transfer():
         
         encrypted_recipient = cipher_suite.encrypt(recipient.encode()).decode()
         encrypted_amount = cipher_suite.encrypt(amount.encode()).decode()
+        logging.info('Transfer to: %s, Amount: %s', encrypted_recipient, encrypted_amount)
         
         with open('transactions.txt', 'a') as f:
             f.write(f"Transfer to: {encrypted_recipient}, Amount: {encrypted_amount}\n")
@@ -167,12 +197,33 @@ def login():
     if form.validate_on_submit():
         username = escape(form.email.data).lower()
         password = escape(form.password.data)
+
+        if detect_sql_injection(username) or detect_sql_injection(password):
+            logging.error("SQL Injection attempt detected for user %s from IP %s", username, request.remote_addr)
+            return render_template('login.html', form=form, success=success)
+        
+        if detect_xss(username) or detect_xss(password):
+            logging.error("XSS attempt detected for user %s from IP %s", username, request.remote_addr)
+            return render_template('login.html', form=form, success=success)
+
         user = get_user_from_db(username,password)
         if user:
             success=True
+            if username in failed_login_attempts:
+                del failed_login_attempts[username]
             return redirect('/')
         else:
             success=False
+            logging.warning("Failed login attempt for user %s from IP %s", username, request.remote_addr)
+            # Increment the failed login attempt counter
+            if username not in failed_login_attempts:
+                failed_login_attempts[username] = 0
+            failed_login_attempts[username] += 1
+            
+            # Trigger an alert if the threshold is exceeded
+            if failed_login_attempts[username] > 5:
+                logging.error("Too many failed login attempts for user %s from IP %s", username, request.remote_addr)
+                # Optionally, you can take additional actions here, such as blocking the IP or notifying an admin
             return 'Invalid credentials!', 400
 
     return render_template('login.html',form=form,success=success)
@@ -182,11 +233,9 @@ def login():
 def register():
     form = RegisterForm()
     success=False
-    print('In register')
     if form.validate_on_submit():
         username = escape(form.email.data).lower()
         password = escape(form.password.data)
-        print(f"Registering user: {username}")  # Debugging statement
         hashed_password = bcrypt.generate_password_hash(password)
         conn = sqlite3.connect('users.db')
         cursor = conn.cursor()
@@ -194,12 +243,10 @@ def register():
         cursor.execute(query, (username,))
         existing_user = cursor.fetchone()
         if existing_user:
+            logging.info("User already exists: %s", username)
             return 'User already exists!', 400
-        if len(password) < 8:
-            return 'Password must be at least 8 characters!', 400
-        if '@' not in username:
-            return 'Invalid Email address!', 400
         query = "INSERT INTO users (username, password) VALUES (?, ?)"
+        logging.info('Inserting user: %s', username)
         cursor.execute(query, (username, hashed_password))
         conn.commit()
         conn.close()
