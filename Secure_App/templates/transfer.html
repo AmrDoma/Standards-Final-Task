@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Fake Bank Transfer</title>
+    <title>Bank Transfer</title>
 </head>
 <body>
     <h1>Bank Transfer</h1>
@@ -10,11 +9,14 @@
         <p>Transfer Successful!</p>
     {% endif %}
     <form method="POST" action="/transfer">
+        {{ form.hidden_tag() }}  <!-- CSRF token -->
         <label for="recipient">Recipient:</label>
-        <input type="text" name="recipient" required><br>
+        {{ form.recipient() }}
+        <br>
         <label for="amount">Amount:</label>
-        <input type="number" name="amount" required><br>
-        <input type="submit" value="Transfer">
+        {{ form.amount() }}
+        <br>
+        {{ form.submit() }}
     </form>
 </body>
 </html>

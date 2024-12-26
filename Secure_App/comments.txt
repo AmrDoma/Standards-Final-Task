@@ -1,6 +1,9 @@
-h
+Hello
+hi
+hkh&lt;script&gt;alert(&#39;Pretend this is a virus&#39;);&lt;/script&gt;
 
-<script>alert('XSS Vulnerability!');</script>
+&lt;script&gt;alert(&#39;Pretend this is a virus&#39;);&lt;/script&gt;
 
-<script>alert('XSS Vulnerability!');</script>
+&lt;script&gt;alert(&#39;Pretend this is a virus&#39;);&lt;/script&gt;
 
+&lt;script&gt;alert(&#39;Pretend this is a virus&#39;);&lt;/script&gt;

@@ -1,0 +1,5 @@
+Transfer to: hamada, Amount: 500
+Transfer to: attacker_account, Amount: 1000
+Transfer to: attacker_account, Amount: 1000
+Transfer to: abdo, Amount: 2
+Transfer to: abdelhalim, Amount: 5
