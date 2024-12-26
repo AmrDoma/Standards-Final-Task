@@ -6,11 +6,19 @@ from flask_wtf.csrf import CSRFProtect
 from wtforms import StringField, SubmitField
 from flask_wtf import FlaskForm
 from flask_bcrypt import Bcrypt
+import logging
+
+# Configure the logging module
+logging.basicConfig(filename='app.log', level=logging.INFO)
 
 app = Flask(__name__)
+logging.info('App started')
 bcrypt=Bcrypt(app)
+logging.info('bcrypt started')
 app.secret_key = 'hamada'  # Required for session management
+logging.info('secret key set')
 csrf = CSRFProtect(app)  # Enable CSRF protection
+logging.info('csrf enabled')
 # Form for transfer (Flask-WTF)
 class TransferForm(FlaskForm):
     recipient = StringField('Recipient')
@@ -26,6 +34,8 @@ class LoginForm(FlaskForm):
     email = StringField('Email')
     password = StringField('Password')
     submit = SubmitField('Login')
+
+logging.info('Forms created')
 
 # Insecure database connection (no parameterization)
 
@@ -45,8 +55,10 @@ def get_user_from_db(username, password):
     conn.close()
     print(user)
     if not user:
+        logging.error("No user found with username: %s", username)
         return None
     if (bcrypt.check_password_hash(user[2], password)):
+        logging.info("User %s logged in successfully", username)
         return user
 
 
