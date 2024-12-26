@@ -1,7 +1,2 @@
-Transfer to: hamada, Amount: 500
-Transfer to: attacker_account, Amount: 1000
-Transfer to: attacker_account, Amount: 1000
-Transfer to: abdo, Amount: 2
-Transfer to: abdelhalim, Amount: 5
-Transfer to: None, Amount: None
-Transfer to: None, Amount: None
+Transfer to: gAAAAABnbci9bmEAv950HQjm1bz0SMdWX0ValNbjqatYZ_h4P3gAI9-_SxPaq2qtcLSvv3JzP7VPl4boE6uxtw34RZlL4YjGbA==, Amount: gAAAAABnbci9eOcEBQnpDUblaex13gkkonkIgBZeqCPQSjvJHffaxzCAwKvvfdC3j_KL8_Gr9NVuRfyGhxj55NHcbE0-3l1iJA==
+Transfer to: gAAAAABnbcjyKcol5ziM_CrIjR_RvM0o8NFYjxR4O_9NphI5lMvOhe4bDKUdQcq3hOua_umUJ29CYr7DerNhMpwL1JK89LKJEg==, Amount: gAAAAABnbcjyTL6EsL1Dy9tHASzegSOWT9sUigi-uETS-Y6xYJHMkvJqs_GQyWhyoURaw52PvvxeuHXeksZkU72nQffKbdgtMg==

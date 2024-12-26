@@ -7,9 +7,18 @@ from wtforms import StringField, SubmitField
 from flask_wtf import FlaskForm
 from flask_bcrypt import Bcrypt
 import logging
+from cryptography.fernet import Fernet
+def load_key():
+    return open("secret.key", "rb").read()
+
+# Initialize the cipher suite with the loaded key
+logging.basicConfig(filename='app.log', level=logging.INFO)
+key = load_key()
+logging.info
+cipher_suite = Fernet(key)
+logging.info('Key loaded')
 
 # Configure the logging module
-logging.basicConfig(filename='app.log', level=logging.INFO)
 
 app = Flask(__name__)
 logging.info('App started')
@@ -87,6 +96,29 @@ def comment():
     # Render the template with escaped comments
     return render_template('comments.html', comments=comments)
 
+@app.route('/transactions')
+def view_transactions():
+    transactions = []
+    with open('transactions.txt', 'r') as f:
+        for line in f:
+            if line.strip():  # Skip empty lines
+                try:
+                    parts = line.split(", ")
+                    encrypted_recipient = parts[0].split(": ")[1]
+                    encrypted_amount = parts[1].split(": ")[1]
+                    decrypted_recipient = cipher_suite.decrypt(encrypted_recipient.encode()).decode()
+                    decrypted_amount = cipher_suite.decrypt(encrypted_amount.encode()).decode()
+                    transactions.append({
+                        'recipient': decrypted_recipient,
+                        'amount': decrypted_amount
+                    })
+                except Exception as e:
+                    # Handle decryption errors or malformed lines
+                    print(f"Error decrypting line: {line}, error: {e}")
+                    continue
+
+    return render_template('transactions.html', transactions=transactions)
+
 @app.route('/transfer', methods=['GET', 'POST'])
 def transfer():
     form = TransferForm()
@@ -95,8 +127,11 @@ def transfer():
         recipient = form.recipient.data
         amount = form.amount.data
         
+        encrypted_recipient = cipher_suite.encrypt(recipient.encode()).decode()
+        encrypted_amount = cipher_suite.encrypt(amount.encode()).decode()
+        
         with open('transactions.txt', 'a') as f:
-            f.write(f"Transfer to: {recipient}, Amount: {amount}\n")
+            f.write(f"Transfer to: {encrypted_recipient}, Amount: {encrypted_amount}\n")
         
         success = True
 
