@@ -360,3 +360,42 @@ INFO:root:App started
 INFO:root:bcrypt started
 INFO:root:secret key set
 INFO:root:csrf enabled
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Key loaded
+INFO:root:App started
+INFO:root:bcrypt started
+INFO:root:secret key set
+INFO:root:csrf enabled
+INFO:root:Forms created
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 474-034-484
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:43:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:43:59] "GET /comment HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:44:01] "GET /comment HTTP/1.1" 200 -
+INFO:flask-limiter:ratelimit 1 per 1 second (127.0.0.1) exceeded at endpoint: comment
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:44:01] "[31m[1mGET /comment HTTP/1.1[0m" 429 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:44:02] "GET /comment HTTP/1.1" 200 -
+INFO:flask-limiter:ratelimit 1 per 1 second (127.0.0.1) exceeded at endpoint: comment
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:44:03] "[31m[1mGET /comment HTTP/1.1[0m" 429 -
+INFO:flask-limiter:ratelimit 1 per 1 second (127.0.0.1) exceeded at endpoint: comment
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:44:03] "[31m[1mGET /comment HTTP/1.1[0m" 429 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:44:03] "GET /comment HTTP/1.1" 200 -
+INFO:flask-limiter:ratelimit 1 per 1 second (127.0.0.1) exceeded at endpoint: comment
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:44:04] "[31m[1mGET /comment HTTP/1.1[0m" 429 -
+INFO:flask-limiter:ratelimit 1 per 1 second (127.0.0.1) exceeded at endpoint: comment
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:44:04] "[31m[1mGET /comment HTTP/1.1[0m" 429 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:44:05] "GET /comment HTTP/1.1" 200 -
+INFO:flask-limiter:ratelimit 1 per 1 second (127.0.0.1) exceeded at endpoint: comment
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:44:05] "[31m[1mGET /comment HTTP/1.1[0m" 429 -
+INFO:werkzeug:127.0.0.1 - - [26/Dec/2024 23:44:07] "GET /comment HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\amrdo\\OneDrive\\Desktop\\Standards Last task\\Secure_Coding\\Secure_App\\routes.py', reloading
+INFO:werkzeug: * Restarting with stat

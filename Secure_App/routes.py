@@ -6,8 +6,12 @@ from flask_wtf.csrf import CSRFProtect
 from wtforms import StringField, SubmitField,TextAreaField,PasswordField
 from flask_wtf import FlaskForm
 from flask_bcrypt import Bcrypt
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 import logging
 from cryptography.fernet import Fernet
+
+
 def load_key():
     return open("secret.key", "rb").read()
 
@@ -28,6 +32,14 @@ app.secret_key = 'hamada'  # Required for session management
 logging.info('secret key set')
 csrf = CSRFProtect(app)  # Enable CSRF protection
 logging.info('csrf enabled')
+
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["200 per day", "100 per hour"],
+    storage_uri="memory://",
+)
+
 # Form for transfer (Flask-WTF)
 class TransferForm(FlaskForm):
     recipient = StringField('Recipient')
@@ -77,10 +89,12 @@ def get_user_from_db(username, password):
 
 
 @app.route('/')
+@limiter.limit("1/second", override_defaults=False)
 def home():
     return render_template('home.html')
 
 @app.route('/comment', methods=['GET', 'POST'])
+@limiter.limit("1/second", override_defaults=False)
 def comment():
     comments = []
     form=CommentForm()
@@ -96,6 +110,7 @@ def comment():
     return render_template('comments.html', comments=comments, form=form, success=success)
 
 @app.route('/transactions')
+@limiter.limit("1/second", override_defaults=False)
 def view_transactions():
     transactions = []
     with open('transactions.txt', 'r') as f:
@@ -119,6 +134,7 @@ def view_transactions():
     return render_template('transactions.html', transactions=transactions)
 
 @app.route('/transfer', methods=['GET', 'POST'])
+@limiter.limit("1/second", override_defaults=False)
 def transfer():
     form = TransferForm()
     success = False
@@ -137,6 +153,7 @@ def transfer():
     return render_template('transfer.html', form=form, success=success)
 
 @app.route('/login', methods=['GET', 'POST'])
+@limiter.limit("1/second", override_defaults=False)
 def login():
     form = LoginForm()
     success=False
@@ -154,6 +171,7 @@ def login():
     return render_template('login.html',form=form,success=success)
 
 @app.route('/register', methods=['GET', 'POST'])
+@limiter.limit("1/second", override_defaults=False)
 def register():
     form = RegisterForm()
     success=False
