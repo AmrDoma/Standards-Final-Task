@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="POST" action="/login">
+    <h2>Register</h2>
+    <form method="POST" action="/register">
         {{ form.hidden_tag() }}  <!-- CSRF token -->
         <label for="email">Email:</label>
         {{ form.email() }}

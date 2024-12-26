@@ -3,3 +3,5 @@ Transfer to: attacker_account, Amount: 1000
 Transfer to: attacker_account, Amount: 1000
 Transfer to: abdo, Amount: 2
 Transfer to: abdelhalim, Amount: 5
+Transfer to: None, Amount: None
+Transfer to: None, Amount: None

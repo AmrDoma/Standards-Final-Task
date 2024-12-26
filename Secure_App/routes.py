@@ -5,8 +5,10 @@ from flask import Flask, render_template, request, redirect, session
 from flask_wtf.csrf import CSRFProtect
 from wtforms import StringField, SubmitField
 from flask_wtf import FlaskForm
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
+bcrypt=Bcrypt(app)
 app.secret_key = 'hamada'  # Required for session management
 csrf = CSRFProtect(app)  # Enable CSRF protection
 # Form for transfer (Flask-WTF)
@@ -14,6 +16,16 @@ class TransferForm(FlaskForm):
     recipient = StringField('Recipient')
     amount = StringField('Amount')
     submit = SubmitField('Transfer')
+
+class RegisterForm(FlaskForm):
+    email = StringField('Email')
+    password = StringField('Password')
+    submit = SubmitField('Register')
+
+class LoginForm(FlaskForm):
+    email = StringField('Email')
+    password = StringField('Password')
+    submit = SubmitField('Login')
 
 # Insecure database connection (no parameterization)
 
@@ -23,15 +35,20 @@ def get_user_from_db(username, password):
     cursor = conn.cursor()
 
     # Parameterized query with placeholders
-    query = "SELECT * FROM users WHERE username = ? AND password = ?"
-    cursor.execute(query, (username, password))
+    query = "SELECT * FROM users WHERE username = ?"
+    cursor.execute(query, (username,))
 
     # Fetch the first matching user
     user = cursor.fetchone()
     
     # Close the connection
     conn.close()
-    return user
+    print(user)
+    if not user:
+        return None
+    if (bcrypt.check_password_hash(user[2], password)):
+        return user
+
 
 
 @app.route('/')
@@ -75,22 +92,50 @@ def transfer():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        # Insecure login logic (No hashing or validation)
-        # TODO: Use secure password hashing to store and verify passwords
-        # TODO: Validate user input to prevent SQL Injection
+    form = LoginForm()
+    success=False
+    if form.validate_on_submit():
+        username = form.email.data
+        password = form.password.data
         user = get_user_from_db(username,password)
-        print(user)
-        if user:  # Plaintext password comparison (No hashing)
-            # TODO: Replace with secure password validation using hashed passwords
+        if user:
+            success=True
             return redirect('/')
         else:
+            success=False
             return 'Invalid credentials!', 400
 
-    return render_template('login.html')
+    return render_template('login.html',form=form,success=success)
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    success=False
+    if form.validate_on_submit():
+        username = form.email.data
+        password = form.password.data
+        hashed_password = bcrypt.generate_password_hash(password)
+        conn = sqlite3.connect('users.db')
+        cursor = conn.cursor()
+        query = "SELECT * FROM users WHERE username = ?"
+        cursor.execute(query, (username,))
+        existing_user = cursor.fetchone()
+        if existing_user:
+            return 'User already exists!', 400
+        if len(password) < 8:
+            return 'Password must be at least 8 characters!', 400
+        if '@' not in username:
+            return 'Invalid Email address!', 400
+        query = "INSERT INTO users (username, password) VALUES (?, ?)"
+        cursor.execute(query, (username, hashed_password))
+        conn.commit()
+        conn.close()
+        success=True
+
+        return redirect('/login')
+    return render_template('register.html',form=form, success=success)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
