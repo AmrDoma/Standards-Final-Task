@@ -16,3 +16,7 @@ abc
 abc
 abc
 &lt;script&gt;alert(&#39;Virus executed&#39;)&lt;/script&gt;
+&lt;script&gt;alert(&#39;Virus!&#39;)&lt;/script&gt;
+&lt;script&gt;alert(&#39;Virus!&#39;)&lt;/script&gt;
+&lt;script&gt;alert(&#39;Virus!&#39;)&lt;/script&gt;
+&lt;script&gt;alert(&#39;Virus!&#39;)&lt;/script&gt;
