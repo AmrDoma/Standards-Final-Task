@@ -146,8 +146,8 @@ def transfer():
     form = TransferForm()
     success = False
     if form.validate_on_submit():  # CSRF token is checked automatically
-        recipient = form.recipient.data
-        amount = form.amount.data
+        recipient = escape(form.recipient.data)
+        amount = escape(form.amount.data)
         
         encrypted_recipient = cipher_suite.encrypt(recipient.encode()).decode()
         encrypted_amount = cipher_suite.encrypt(amount.encode()).decode()
@@ -165,8 +165,8 @@ def login():
     form = LoginForm()
     success=False
     if form.validate_on_submit():
-        username = form.email.data.lower()
-        password = form.password.data
+        username = escape(form.email.data).lower()
+        password = escape(form.password.data)
         user = get_user_from_db(username,password)
         if user:
             success=True
@@ -184,8 +184,8 @@ def register():
     success=False
     print('In register')
     if form.validate_on_submit():
-        username = form.email.data.lower()
-        password = form.password.data
+        username = escape(form.email.data).lower()
+        password = escape(form.password.data)
         print(f"Registering user: {username}")  # Debugging statement
         hashed_password = bcrypt.generate_password_hash(password)
         conn = sqlite3.connect('users.db')
