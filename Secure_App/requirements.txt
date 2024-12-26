@@ -4,3 +4,5 @@ flask_wtf
 wtforms
 flask_login
 werkzeug
+email-validator
+re

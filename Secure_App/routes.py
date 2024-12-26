@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from markupsafe import escape
 import sqlite3
-from flask import Flask, render_template, request, redirect, session
 from flask_wtf.csrf import CSRFProtect
 from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired, Email, Length, Regexp
 from flask_wtf import FlaskForm
 from flask_bcrypt import Bcrypt
 
@@ -13,18 +13,25 @@ app.secret_key = 'hamada'  # Required for session management
 csrf = CSRFProtect(app)  # Enable CSRF protection
 # Form for transfer (Flask-WTF)
 class TransferForm(FlaskForm):
-    recipient = StringField('Recipient')
-    amount = StringField('Amount')
+    recipient = StringField('Recipient',validators=[DataRequired()])
+    amount = StringField('Amount', validators=[
+        DataRequired(),
+        Regexp(r'^\d+(\.\d{1,2})?$', message="Amount must be a valid number.")
+    ])
     submit = SubmitField('Transfer')
 
 class RegisterForm(FlaskForm):
-    email = StringField('Email')
-    password = StringField('Password')
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = StringField('Password', validators=[
+        DataRequired(),
+        Length(min=8, message="Password must be at least 8 characters long."),
+        Regexp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$', message="Password must contain letters and numbers.")
+    ])
     submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
-    email = StringField('Email')
-    password = StringField('Password')
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = StringField('Password', validators=[DataRequired(), Length(min=8)])
     submit = SubmitField('Login')
 
 # Insecure database connection (no parameterization)
@@ -111,9 +118,11 @@ def login():
 def register():
     form = RegisterForm()
     success=False
+    print('In register')
     if form.validate_on_submit():
         username = form.email.data
         password = form.password.data
+        print(f"Registering user: {username}")  # Debugging statement
         hashed_password = bcrypt.generate_password_hash(password)
         conn = sqlite3.connect('users.db')
         cursor = conn.cursor()
